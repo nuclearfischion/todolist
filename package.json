@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/nuclearfischion/todolist/issues"
   },
-  "homepage": "https://github.com/nuclearfischion/todolist#readme"
+  "homepage": "https://github.com/nuclearfischion/todolist#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

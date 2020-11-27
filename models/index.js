@@ -1,6 +1,14 @@
 //*******connect to mongodb********/
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/todo', {useNewUrlParser: true});
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
+mongoose.connect('mongodb://localhost/todo');
+
+// Make Mongoose use `findOneAndUpdate()`. Note that this option is `true`
+// by default, you need to set it to false.
+mongoose.set('useFindAndModify', false);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

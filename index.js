@@ -8,8 +8,11 @@ var express =  require('express'),
 
 var todoRoutes = require("./routes/todos");
 
+app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '/public'));
+
 app.get('/', function(req, res){
-    res.send("hi from the root route");
+    res.sendFile("index.html");
 });
 
 // prefix todoRoutes

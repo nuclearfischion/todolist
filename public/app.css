@@ -18,3 +18,35 @@ nav .brand-logo {
     -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.14),  0 1px 8px 0 rgba(0,0,0,0.2) !important;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.14),  0 1px 8px 0 rgba(0,0,0,0.2) !important;
 }
+
+/* checkbox color */
+[type="checkbox"].filled-in:checked+span:not(.lever):after {
+    border: 2px solid #d7ccc8 !important;
+    background-color: #d7ccc8 !important;
+}
+
+label {
+    color: inherit !important;
+}
+
+span.done {
+    color: #9e9e9e;
+    text-decoration: line-through;
+}
+
+i.small {
+    font-size: 1.6rem !important;
+}
+
+i.delete {
+    transform: translateY(5%);
+    color: #9e9e9e;
+}
+
+li.collection-item {
+    display: flex;
+}
+
+li.collection-item > label {
+    flex-grow: 1;
+}

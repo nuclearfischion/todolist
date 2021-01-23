@@ -39,6 +39,9 @@ function createTodo(newTodo){
         .then(function(newTodo){
             console.log("sent post request");
             console.log('newTodo: ', newTodo);
+
+            //append todo to HTML
+            addTodo(newTodo._id, newTodo);
         })
         .catch(function(err){
             console.log(err);

@@ -47,21 +47,6 @@ function createTodo(newTodo){
         });
 }
 
-function deleteTodo(todoItem){
-    console.log("gonna delete your todo!");
-
-    // sent request to create new todo
-    $.ajax({url: url+"/"+todoItem, method: 'DELETE'})
-    .then(function(newTodo){
-        console.log("sent delete request");
-        //     //delete todo in HTML
-        //     deleteTodo(newTodo);
-        })
-        .catch(function(err){
-            console.log(err);
-        });
-}
-
 function addTodo(todoItem){
     // build html element
     let listItemElement = document.createElement("li");
@@ -73,11 +58,7 @@ function addTodo(todoItem){
     let deleteButton = document.createElement("button");
     $(deleteButton).addClass("button-delete");
     $(deleteButton).html("<i class=\"material-icons small delete\">delete</i>");
-    $(deleteButton).click(function(){
-        let clickedItemId = $(this).parent().data().id;
-        deleteTodo(clickedItemId);
-        console.log($(this).parent().remove());
-    });
+    $(deleteButton).click(removeTodo);
     // check if element is completed
     // console.log(e);
     
@@ -109,3 +90,23 @@ function addTodo(todoItem){
     console.log(labelElement);
 }
 
+function deleteTodo(todoItem){
+    console.log("gonna delete your todo!");
+
+    // sent request to create new todo
+    $.ajax({url: url+"/"+todoItem, method: 'DELETE'})
+    .then(function(newTodo){
+        console.log("sent delete request");
+        //     //delete todo in HTML
+        //     deleteTodo(newTodo);
+        })
+        .catch(function(err){
+            console.log(err);
+        });
+}
+
+function removeTodo(){
+    let clickedItemId = $(this).parent().data().id;
+    deleteTodo(clickedItemId);
+    console.log($(this).parent().remove());
+}

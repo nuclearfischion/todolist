@@ -54,11 +54,8 @@ function deleteTodo(todoItem){
     $.ajax({url: url+"/"+todoItem, method: 'DELETE'})
     .then(function(newTodo){
         console.log("sent delete request");
-        console.log('newTodo: ', newTodo);
-        
-        //     //append todo to HTML
+        //     //delete todo in HTML
         //     deleteTodo(newTodo);
-        //     // $("#todoField").val("");    //clear input box
         })
         .catch(function(err){
             console.log(err);
@@ -66,11 +63,9 @@ function deleteTodo(todoItem){
 }
 
 function addTodo(todoItem){
-    console.log("****addTodo item: ", todoItem._id);
     // build html element
     let listItemElement = document.createElement("li");
     $(listItemElement).data('id', todoItem._id);
-    console.log("$$$$listItemElement.data: ", $(listItemElement).data());
     $(listItemElement).addClass("collection-item");
     
     let labelElement = document.createElement("label");
@@ -81,6 +76,7 @@ function addTodo(todoItem){
     $(deleteButton).click(function(){
         let clickedItemId = $(this).parent().data().id;
         deleteTodo(clickedItemId);
+        console.log($(this).parent().remove());
     });
     // check if element is completed
     // console.log(e);

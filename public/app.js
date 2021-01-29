@@ -12,6 +12,9 @@ $(document).ready(function(){
 
         }
     });
+
+    // $( "input[type='checkbox']" ).on('click', updateTodo);
+    $( "input[type='checkbox']" ).on('click', updateTodo);
 });
 
 let url = "/api/todos";
@@ -51,6 +54,7 @@ function addTodo(todoItem){
     // build html element
     let listItemElement = document.createElement("li");
     $(listItemElement).data('id', todoItem._id);
+    $(listItemElement).data('completed', todoItem.completed);
     $(listItemElement).addClass("collection-item");
     
     let labelElement = document.createElement("label");
@@ -59,14 +63,15 @@ function addTodo(todoItem){
     $(deleteButton).addClass("button-delete");
     $(deleteButton).html("<i class=\"material-icons small delete\">delete</i>");
     $(deleteButton).click(removeTodo);
+
     // check if element is completed
     // console.log(e);
     
     $(inputElement).attr("type", "checkbox").addClass("filled-in").attr("id", todoItem._id);
     
-    let spanElement = document.createElement("span")
+    let spanElement = document.createElement("span");
     $(spanElement).html(todoItem.name);
-    
+
     if(todoItem.completed){
         $(inputElement).attr("checked", "");
         $(spanElement).addClass("strikethrough");
@@ -88,6 +93,46 @@ function addTodo(todoItem){
     $(".list").append(listItemElement);
     // $(".list").append(result);
     console.log(labelElement);
+}
+
+//toggles completion in HTML view
+//called by line 16
+function toggleTodoCompletion(listItem){
+    // make ajax request to update route
+    console.log("##########data completed: ");
+    console.log($(listItem).data().completed);
+    if($(listItem).data().completed===true)
+        $(listItem).find("span").addClass("strikethrough");
+    else
+        $(listItem).find("span").removeClass("strikethrough");
+
+    console.log(`this is: `);
+    console.log(listItem);
+}
+
+//send ajax update request
+function updateTodo(event){
+    console.log(event);
+    event.stopPropagation();
+    console.log("$$$$updateTodo this is:");
+    let todoId = $(this).data().id;
+    let completed = $(this).data().completed;
+    console.log(todoId);
+    toggleTodoCompletion(this); //TODO: NOT WORKING
+    $(this).data().completed;
+    console.log($(this).data());
+    $.ajax({
+        url: url+'/'+ todoId, 
+        method: "PUT",
+        data: {completed: !completed}})
+    .then(function(updatedTodo){
+            console.log("toggling your todo completion!");
+            //TODO: toggle todo strikethrough!!!
+            console.log(updatedTodo);
+        })
+        .catch(function(err){
+            console.log(err);
+        });
 }
 
 function deleteTodo(todoItem){

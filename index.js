@@ -20,5 +20,5 @@ app.use('/api/todos/', todoRoutes);
 
 app.listen(3000, ()=>{
     console.log("app is running on port 3000 http://localhost:3000");
-});
+}); 
 

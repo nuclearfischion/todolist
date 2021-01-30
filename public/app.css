@@ -30,6 +30,11 @@ span.strikethrough {
     text-decoration: line-through;
 }
 
+/* li.collection-item[data="completed: true"] {
+    text-decoration: line-through;
+    
+} */
+
 i.small {
     font-size: 1.6rem !important;
 }

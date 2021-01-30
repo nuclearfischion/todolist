@@ -13,8 +13,7 @@ $(document).ready(function(){
         }
     });
 
-    // $( "input[type='checkbox']" ).on('click', updateTodo);
-    $( "input[type='checkbox']" ).on('click', updateTodo);
+    $('.list').on('click', 'li', updateTodo);
 });
 
 let url = "/api/todos";
@@ -69,9 +68,11 @@ function addTodo(todoItem){
     
     $(inputElement).attr("type", "checkbox").addClass("filled-in").attr("id", todoItem._id);
     
-    let spanElement = document.createElement("span");
+    let spanElement = document.createElement("span")
     $(spanElement).html(todoItem.name);
-
+    // $(spanElement).click(updateTodo);
+    
+    // updateTodo(todoItem, inputElement, spanElement);
     if(todoItem.completed){
         $(inputElement).attr("checked", "");
         $(spanElement).addClass("strikethrough");
@@ -106,14 +107,15 @@ function toggleTodoCompletion(listItem){
     else
         $(listItem).find("span").removeClass("strikethrough");
 
+    /*** 
+     * NOTE: addClass() and removeClass() both work, but toggleClass() doesn't. whyyyy
+     * ***/
     console.log(`this is: `);
     console.log(listItem);
 }
 
 //send ajax update request
-function updateTodo(event){
-    console.log(event);
-    event.stopPropagation();
+function updateTodo(){
     console.log("$$$$updateTodo this is:");
     let todoId = $(this).data().id;
     let completed = $(this).data().completed;

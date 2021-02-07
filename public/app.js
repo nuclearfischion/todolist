@@ -13,7 +13,24 @@ $(document).ready(function(){
         }
     });
 
-    $('.list').on('click', 'li', updateTodo);
+    // $('.list').on('click', 'li', function(){
+    //     console.log("this is");
+    //     console.log(this);
+    //     updateTodo();
+    // });
+    $('.list').on('click', 'li', function(e){
+        console.log('currentTarget from .list.on');
+        console.log(e);
+        if (e.target == "label"){
+            console.log("bye!");
+            return;
+        }
+        updateTodo(this);
+    });
+
+    $('.list').on('click', 'span', function(e){
+        e.stopPropagation();
+    });
 });
 
 let url = "/api/todos";
@@ -115,21 +132,19 @@ function toggleTodoCompletion(listItem){
 }
 
 //send ajax update request
-function updateTodo(){
+function updateTodo(todoLiItem){
     console.log("$$$$updateTodo this is:");
-    let todoId = $(this).data().id;
-    let completed = $(this).data().completed;
+    let todoId = $(todoLiItem).data().id;
+    $(todoLiItem).data().completed = !($(todoLiItem).data().completed);
+    let completed = $(todoLiItem).data().completed;
     console.log(todoId);
-    toggleTodoCompletion(this); //TODO: NOT WORKING
-    $(this).data().completed;
-    console.log($(this).data());
+    // toggleTodoCompletion(todoLiItem); //TODO: NOT WORKING
+    console.log(`completed: ${completed}`);
     $.ajax({
         url: url+'/'+ todoId, 
         method: "PUT",
-        data: {completed: !completed}})
+        data: {completed: completed}})
     .then(function(updatedTodo){
-            console.log("toggling your todo completion!");
-            //TODO: toggle todo strikethrough!!!
             console.log(updatedTodo);
         })
         .catch(function(err){

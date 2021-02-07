@@ -21,8 +21,12 @@ nav .brand-logo {
     background-color: #d7ccc8 !important;
 }
 
+.collection-item {
+    padding: 0 !important;
+}
 label {
     color: inherit !important;
+    padding: 10px 20px;
 }
 
 [type="checkbox"]:checked + span {

@@ -1,4 +1,3 @@
-
 // wait until DOM has loaded
 $(document).ready(function(){
     addTodos();
@@ -13,15 +12,10 @@ $(document).ready(function(){
         }
     });
 
-    // $('.list').on('click', 'li', function(){
-    //     console.log("this is");
-    //     console.log(this);
-    //     updateTodo();
-    // });
     $('.list').on('click', 'li', function(e){
         console.log('currentTarget from .list.on');
-        console.log(e);
-        if (e.target == "label"){
+        console.log(e.target.nodeName);
+        if (e.target.nodeName == "LABEL"){
             console.log("bye!");
             return;
         }
@@ -42,10 +36,7 @@ function addTodos(){
     .done(function(res){
         console.log("result is: ", res);
         res.forEach((e, i)=>{
-            console.log(e);
-            
             addTodo(e);
-            
         });
     });
 }
@@ -124,9 +115,6 @@ function toggleTodoCompletion(listItem){
     else
         $(listItem).find("span").removeClass("strikethrough");
 
-    /*** 
-     * NOTE: addClass() and removeClass() both work, but toggleClass() doesn't. whyyyy
-     * ***/
     console.log(`this is: `);
     console.log(listItem);
 }

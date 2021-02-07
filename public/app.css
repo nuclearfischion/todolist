@@ -1,9 +1,31 @@
+:root {
+    --accent-color: #d7ccc8;
+}
 h1, h2, h3, h4, h5, h6, .brand-logo {
     font-weight: 300 !important;
 }
 
+h1 {
+    margin-bottom: 0 !important;
+}
+h4 {
+    margin-top: 0 !important;
+}
+
+main.container {
+    max-width: 768px;
+}
+
+.top-nav {
+    box-shadow: 0 4px 7px rgb(128 175 188 / 15%);
+}
+
 nav .brand-logo {
     margin-left: 1rem;
+}
+
+nav ul a {
+    color: black !important;
 }
 
 .font-weight-ultra-black {
@@ -27,6 +49,10 @@ nav .brand-logo {
 label {
     color: inherit !important;
     padding: 10px 20px;
+}
+
+input[type="text"] + label {
+    color: #808984 !important;
 }
 
 [type="checkbox"]:checked + span {
@@ -71,3 +97,32 @@ li.collection-item {
 li.collection-item > label {
     flex-grow: 1;
 }
+
+/*label color*/
+  /* label color */
+  .input-field label {
+    /* color: var(--accent-color) !important; */
+  }
+  /* label focus color */
+  .input-field input[type=text]:focus + label {
+    /* color: var(--accent-color) !important; */
+  }
+  /* label underline focus color */
+  .input-field input[type=text]:focus {
+    border-bottom: 1px solid var(--accent-color) !important;
+    box-shadow: 0 1px 0 0 var(--accent-color) !important;
+  }
+  /* valid color */
+  .input-field input[type=text].valid {
+    border-bottom: 1px solid var(--accent-color) !important;
+    box-shadow: 0 1px 0 0 var(--accent-color) !important;
+  }
+  /* invalid color */
+  .input-field input[type=text].invalid {
+    border-bottom: 1px solid var(--accent-color) !important;
+    box-shadow: 0 1px 0 0 var(--accent-color) !important;
+  }
+  /* icon prefix focus color */
+  .input-field .prefix.active {
+    color: var(--accent-color) !important;
+  }
